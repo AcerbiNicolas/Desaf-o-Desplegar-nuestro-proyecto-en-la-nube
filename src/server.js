@@ -1,4 +1,3 @@
-import express from "express";
 import productRouter from './routes/product.js';
 import cartRouter from './routes/cart.js';
 import userRouter from './routes/user.js';
@@ -77,8 +76,7 @@ app.all("*", (_req, res) => {
       })
   
   } else {
-      const app = express();
-      const PORT = parseInt(process.argv[2]) || 8085;
+      const PORT = parseInt(process.argv[2]) || 8080;
   
       app.get(`/datos`, (req, res) =>{
           res.send(`Server en port(${PORT}) - PID ${process.pid} - FyH ${new Date().toLocaleString()}`)
@@ -106,11 +104,3 @@ app._router.stack.forEach(function (r) {
       console.log(r.route.path)
     }
   });
-
-const PORT = process.env.PORT;
-const server = app.listen(PORT, () => {
-    logger.info(`🚀 Server started at http://localhost:${PORT}`)
-    })
-    
-server.on('error', (err) => logger.error(err));
-
